@@ -1,0 +1,1457 @@
+<script>
+  // Language module
+  const translations = {
+    en: {
+      // UI Elements
+      "select_course": "Select Course",
+      "settings": "Settings",
+      "time_period": "Time Period",
+      "entire_course": "Entire Course",
+      "custom_date_range": "Custom Date Range",
+      "start": "Start:",
+      "end": "End:",
+      "analysis_options": "Analysis Options",
+      "count_slides": "Count Material Slides (takes 5 mins extra)",
+      "generate_wrapped": "Generate Classroom Wrapped",
+      "cancel_analysis": "Cancel Analysis",
+      "show_logs": "Show Logs ▼",
+      "hide_logs": "Hide Logs ▲",
+      "loading_courses": "Loading courses...",
+      "fetch_server_logs": "Fetch Server Logs",
+      
+      // Status and error messages
+      "loading_course_data": "Loading course data...",
+      "preparing_analysis": "Preparing analysis...",
+      "analyzing_classroom": "Analyzing classroom data...",
+      "cancelling_operation": "Cancelling operation...",
+      "operation_cancelled": "Operation cancelled",
+      "analysis_completed": "Analysis completed!",
+      "please_select_course": "Please select a course",
+      "please_select_dates": "Please select both start and end dates",
+      "fetching_course_data": "Fetching course data...",
+      "processing_submissions": "Processing submissions...",
+      "analyzing_materials": "Analyzing course materials...",
+      "starting_analysis": "Starting analysis for course ID: ",
+      "operation_cancelled_success": "Operation cancelled successfully",
+      
+      // Statistics - Using provided translations
+      "total_submissions": "Total Submissions",
+      "on_time_rate": "On-Time Rate",
+      "early_bird": "Early Bird",
+      "night_owl": "Night Owl",
+      "earliest_average_submission": "Earliest average submission",
+      "latest_average_submission": "Latest average submission",
+      "submissions_over_time": "Submissions Over Time",
+      "total_student_files": "Total Student Files", 
+      "total_assignments": "Total Assignments",
+      "total_presentations": "Total Presentations",
+      "total_slides": "Total Slides",
+      "avg_slides_per_presentation": "Avg Slides/Presentation",
+      
+      // Additional statistics
+      "submission_time_distribution": "Submission Time Distribution",
+      "files_per_submission": "Files per Submission",
+      "assignments_created": "Assignments Created",
+      "late_submissions": "Late Submissions",
+      "active_students": "Active Students",
+      "file_types_uploaded": "File Types Uploaded",
+      "course_summary": "",
+      "on_time": "On Time",
+      "late": "Late",
+      "submissions": "Submissions",
+      "submission_timeliness": "Submission Timeliness",
+      "assignments_with_deadline": "Assignments with Deadline",
+      "assignments_without_deadline": "Assignments without Deadline",
+      
+      // Chart titles
+      "assignments_created_over_time": "Assignments Created Over Time",
+      "assignments_created_with_without_deadline": "Assignments Created (With vs. Without Deadline)",
+      "submissions_by_hour": "Submissions by Hour of Day",
+      "submission_activity_by_hour": "Submission Activity by Hour",
+      "submission_activity_by_day": "Submission Activity by Day",
+      "student_files_over_time": "Student Files Uploaded Over Time",
+      "top_students_by_submissions": "Top 5 Students by Submissions",
+      
+      // Axis labels
+      "month": "Month",
+      "number_of_assignments_created": "Number of Assignments Created",
+      "number_of_submissions": "Number of Submissions",
+      "number_of_student_files": "Number of Student Files",
+      "hour_of_day": "Hour of Day",
+      "with_deadline": "With Deadline",
+      "without_deadline": "Without Deadline",
+      "submissions_per_month": "Submissions per Month",
+      "student_files_per_month": "Student Files Uploaded per Month",
+      "submissions_count": "Submissions Count",
+      
+      // Raw Data Export
+      "raw_data": "Raw Data (Anonymized)",
+      "show_raw_data": "Generate & Show Raw Data CSV",
+      "copy_data": "Copy the data below:",
+      "student_files_over_time": "Student Files Uploaded Over Time",
+      "student_files_per_month": "Student Files Uploaded per Month",
+      "slide_data": "Slide Data",
+      "load_slide_data": "Load Slide Data",
+      "loading": "Loading...",
+      "error_loading": "Error Loading Data",
+      "try_again": "Try Again",
+      "fetching_server_logs": "Fetching server logs...",
+      "no_server_logs": "No server logs available",
+      "server_logs": "SERVER LOGS"
+    },
+    de: {
+      // UI Elements
+      "select_course": "Kurs auswählen",
+      "settings": "Einstellungen",
+      "time_period": "Zeitraum",
+      "entire_course": "Gesamter Kurs",
+      "custom_date_range": "Benutzerdefinierter Zeitraum",
+      "start": "Beginn:",
+      "end": "Ende:",
+      "analysis_options": "Analyseoptionen",
+      "count_slides": "Präsentationsfolien zählen (dauert bei 30 Submodulen ca. 5 Minuten länger)",
+      "generate_wrapped": "Classroom Wrapped generieren",
+      "cancel_analysis": "Analyse abbrechen",
+      "show_logs": "Logs anzeigen ▼",
+      "hide_logs": "Logs ausblenden ▲",
+      "loading_courses": "Kurse werden geladen...",
+      "fetch_server_logs": "Server-Logs abrufen",
+      
+      // Status and error messages
+      "loading_course_data": "Kursdaten werden geladen...",
+      "preparing_analysis": "Analyse wird vorbereitet...",
+      "analyzing_classroom": "Klassendaten werden analysiert...",
+      "cancelling_operation": "Vorgang wird abgebrochen...",
+      "operation_cancelled": "Vorgang abgebrochen",
+      "analysis_completed": "Analyse abgeschlossen!",
+      "please_select_course": "Bitte wählen Sie einen Kurs aus",
+      "please_select_dates": "Bitte wählen Sie Start- und Enddatum",
+      "fetching_course_data": "Kursdaten werden abgerufen...",
+      "processing_submissions": "Einreichungen werden verarbeitet...",
+      "analyzing_materials": "Kursmaterialien werden analysiert...",
+      "starting_analysis": "Analyse für Kurs-ID wird gestartet: ",
+      "operation_cancelled_success": "Vorgang erfolgreich abgebrochen",
+      
+      // Statistics - Using provided translations
+      "total_submissions": "Eingereichte Hausaufgaben & Zertifikate",
+      "on_time_rate": "Rechtzeitig eingereicht",
+      "early_bird": "Early Bird",
+      "night_owl": "Night Owl",
+      "earliest_average_submission": "Früheste durchschnittliche Einreichung",
+      "latest_average_submission": "Späteste durchschnittliche Einreichung",
+      "submissions_over_time": "Eingereichte Aufgaben nach Monat",
+      "total_student_files": "Eingereichte Dateien", 
+      "total_assignments": "Anzahl an Aufgaben",
+      "total_presentations": "Anzahl von Präsentationen",
+      "total_slides": "Gesamtanzahl von Slides",
+      "avg_slides_per_presentation": "Slides pro Präsentation",
+      
+      // Additional statistics
+      "submission_time_distribution": "Verteilung der Einreichungszeiten",
+      "files_per_submission": "Dateien pro Einreichung",
+      "assignments_created": "Erstellte Aufgaben",
+      "late_submissions": "Verspätet eingereichte Aufgaben",
+      "active_students": "Aktive Studenten",
+      "file_types_uploaded": "Hochgeladene Dateitypen",
+      "course_summary": "",
+      "on_time": "Rechtzeitig",
+      "late": "Verspätet",
+      "submissions": "Eingereichte Aufgaben",
+      "submission_timeliness": "Pünktlichkeit der eingereichten Aufgaben",
+      "assignments_with_deadline": "Aufgaben mit Frist",
+      "assignments_without_deadline": "Aufgaben ohne Frist",
+      
+      // Chart titles
+      "assignments_created_over_time": "Erstellte Aufgaben im Zeitverlauf",
+      "assignments_created_with_without_deadline": "Erstellte Aufgaben (mit vs. ohne Frist)",
+      "submissions_by_hour": "Eingereichte Aufgaben nach Tageszeit",
+      "submission_activity_by_hour": "Eingereichte Aufgaben nach Stunde",
+      "submission_activity_by_day": "Eingereichte Aufgaben nach Wochentag",
+      "student_files_over_time": "Eingereichte Dateien im Zeitverlauf",
+      "top_students_by_submissions": "Top 5 Studenten nach eingereichten Aufgaben",
+      
+      // Axis labels
+      "month": "Monat",
+      "number_of_assignments_created": "Anzahl erstellter Aufgaben",
+      "number_of_submissions": "Anzahl eingereichter Aufgaben",
+      "number_of_student_files": "Anzahl eingereichter Dateien",
+      "hour_of_day": "Uhrzeit",
+      "with_deadline": "Mit Frist",
+      "without_deadline": "Ohne Frist",
+      "submissions_per_month": "Eingereichte Aufgaben pro Monat",
+      "student_files_per_month": "Eingereichte Dateien pro Monat",
+      "submissions_count": "Anzahl eingereichter Aufgaben",
+      
+      // Raw Data Export
+      "raw_data": "CSV-Daten (Anonymisiert)",
+      "show_raw_data": "Anzeigen",
+      "copy_data": "Daten kopieren:",
+      "student_files_over_time": "Eingereichte Dateien im Zeitverlauf",
+      "student_files_per_month": "Eingereichte Dateien pro Monat",
+      "slide_data": "Präsentationssfolien zählen",
+      "load_slide_data": "Daten laden",
+      "loading": "Laden...",
+      "error_loading": "Fehler beim Laden der Daten",
+      "try_again": "Erneut versuchen",
+      "fetching_server_logs": "Server-Logs abrufen...",
+      "no_server_logs": "Keine Server-Logs verfügbar",
+      "server_logs": "SERVER-LOGS"
+    }
+  };
+  
+  // Current language - default to English
+  let currentLanguage = 'en';
+  
+  // Function to switch language
+  function switchLanguage(lang) {
+    if (!translations[lang]) return;
+    
+    currentLanguage = lang;
+    
+    // Update UI language toggle buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.getElementById('lang' + lang.toUpperCase()).classList.add('active');
+    
+    // Update all elements with data-lang-key attribute
+    document.querySelectorAll('[data-lang-key]').forEach(element => {
+      const key = element.getAttribute('data-lang-key');
+      
+      if (translations[lang][key]) {
+        // Special case for buttons
+        if (element.tagName === 'BUTTON' && element.id === 'logToggleBtn') {
+          // Keep the arrow at the end
+          const isShowing = element.textContent.includes('▼');
+          element.textContent = translations[lang][isShowing ? 'show_logs' : 'hide_logs'];
+        } else {
+          element.textContent = translations[lang][key];
+        }
+      }
+    });
+    
+    // Redraw charts if they exist and we're displaying results
+    if (window.classroomWrappedResults && document.getElementById('resultsContainer').style.display !== 'none') {
+      displayWrappedContent(window.classroomWrappedResults);
+    }
+    
+    // Store preference
+    localStorage.setItem('classroom_wrapped_language', lang);
+  }
+  
+  // Load saved language preference on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const savedLang = localStorage.getItem('classroom_wrapped_language');
+    if (savedLang && translations[savedLang]) {
+      switchLanguage(savedLang);
+    }
+  });
+
+  let operationInProgress = false;
+  let folderUrl = '';
+  let progressInterval = null; // For simulated progress updates
+  let activeCharts = {}; // Keep track of active charts for cleanup
+  
+  // Load courses on page load
+  google.script.run
+    .withSuccessHandler(showCourses)
+    .withFailureHandler(showError)
+    .listCourses();
+
+  function showCourses(courses) {
+    const select = document.getElementById('courseSelect');
+    const selectPrompt = translations[currentLanguage]['select_course'] || 'Select a course...';
+    select.innerHTML = `<option value="">${selectPrompt}</option>`;
+    courses.forEach(course => {
+      select.innerHTML += `<option value="${course.id}">${course.name}</option>`;
+    });
+  }
+
+  function loadTopics() {
+    const courseId = document.getElementById('courseSelect').value;
+    if (!courseId) return;
+
+    const loadingMessage = translations[currentLanguage]['loading_course_data'] || "Loading course data...";
+    document.getElementById('status').innerHTML = `<div class="loading-spinner inline-spinner"></div> ${loadingMessage}`;
+    document.getElementById('analysisOptionsContainer').style.display = 'block';
+    document.getElementById('analyzeBtn').disabled = false;
+    document.getElementById('status').innerHTML = '';
+    
+    // Setup date range listeners
+    setupDateRangeToggle();
+  }
+
+  function setupDateRangeToggle() {
+    const radioButtons = document.getElementsByName('timePeriod');
+    const customDateContainer = document.getElementById('customDateContainer');
+    
+    for (const radio of radioButtons) {
+      radio.addEventListener('change', function() {
+        if (this.value === 'custom') {
+          customDateContainer.style.display = 'block';
+        } else {
+          customDateContainer.style.display = 'none';
+        }
+      });
+    }
+  }
+
+  function initLogToggle() {
+    const logToggleBtn = document.getElementById('logToggleBtn');
+    const logOutput = document.getElementById('logOutput');
+    
+    logToggleBtn.addEventListener('click', function() {
+      const isVisible = logOutput.style.display !== 'none';
+      
+      if (isVisible) {
+        logOutput.style.display = 'none';
+        logToggleBtn.textContent = 'Show Logs ▼';
+      } else {
+        logOutput.style.display = 'block';
+        logToggleBtn.textContent = 'Hide Logs ▲';
+      }
+    });
+  }
+  
+  // Initialize log toggle on page load
+  document.addEventListener('DOMContentLoaded', initLogToggle);
+  
+  // Function to add a log entry to the UI
+  function addLogEntry(message, type = 'info', timestamp = null) {
+    const logContainer = document.getElementById('logContainer');
+    const logOutput = document.getElementById('logOutput');
+    
+    // Make log container visible
+    logContainer.style.display = 'block';
+    
+    // Create log entry
+    const entry = document.createElement('div');
+    entry.className = `log-entry log-entry-${type}`;
+    
+    // Add timestamp if provided
+    if (timestamp) {
+      const timestampSpan = document.createElement('span');
+      timestampSpan.className = 'log-entry-timestamp';
+      timestampSpan.textContent = timestamp;
+      entry.appendChild(timestampSpan);
+    }
+    
+    // Add message
+    entry.appendChild(document.createTextNode(message));
+    
+    // Add to log output
+    logOutput.appendChild(entry);
+    
+    // Scroll to bottom
+    logOutput.scrollTop = logOutput.scrollHeight;
+  }
+
+  function runAnalysis() {
+    const courseId = document.getElementById('courseSelect').value;
+    if (!courseId) {
+      showError(translations[currentLanguage]['please_select_course'] || 'Please select a course');
+      return;
+    }
+    
+    // Get time period
+    const timePeriod = document.querySelector('input[name="timePeriod"]:checked').value;
+    let startDate = null;
+    let endDate = null;
+    
+    if (timePeriod === 'custom') {
+      startDate = document.getElementById('startDate').value;
+      endDate = document.getElementById('endDate').value;
+      
+      if (!startDate || !endDate) {
+        showError(translations[currentLanguage]['please_select_dates'] || 'Please select both start and end dates');
+        return;
+      }
+    }
+    
+    // Clear previous logs
+    document.getElementById('logOutput').innerHTML = '';
+    // Show log container
+    document.getElementById('logContainer').style.display = 'block';
+    
+    // Get slide counting option
+    const countSlides = document.getElementById('countSlidesCheckbox').checked;
+
+    const preparingMessage = translations[currentLanguage]['preparing_analysis'] || "Preparing analysis...";
+    document.getElementById('status').innerHTML = `<div class="loading-spinner inline-spinner"></div> ${preparingMessage}`;
+    document.getElementById('analyzeBtn').disabled = true;
+    document.getElementById('cancelBtn').style.display = 'block';
+    document.getElementById('progress').style.display = 'block';
+    document.getElementById('resultsContainer').style.display = 'none';
+    
+    // Reset and start progress bar
+    document.getElementById('progressBar').style.width = '5%';
+    operationInProgress = true;
+    
+    // Add initial log entry
+    const startingMessage = translations[currentLanguage]['starting_analysis'] || "Starting analysis for course ID: ";
+    addLogEntry(`${startingMessage}${courseId}`, 'info');
+    
+    // Simulate progress while waiting for server response
+    clearInterval(progressInterval);
+    let progress = 5;
+    progressInterval = setInterval(() => {
+      if (progress < 90) {
+        progress += 1;
+        document.getElementById('progressBar').style.width = progress + '%';
+        
+        // Add periodic log updates for very long operations
+        if (progress === 25) {
+          addLogEntry(translations[currentLanguage]['fetching_course_data'] || 'Fetching course data...', 'info');
+        } else if (progress === 50) {
+          addLogEntry(translations[currentLanguage]['processing_submissions'] || 'Processing submissions...', 'info');
+        } else if (progress === 75) {
+          addLogEntry(translations[currentLanguage]['analyzing_materials'] || 'Analyzing course materials...', 'info');
+        }
+      }
+    }, 1000);
+    
+    // Update status
+    const analyzingMessage = translations[currentLanguage]['analyzing_classroom'] || "Analyzing classroom data...";
+    document.getElementById('status').innerHTML = `<div class="loading-spinner inline-spinner"></div> ${analyzingMessage}`;
+    
+    // Pass necessary parameters
+    google.script.run
+      .withSuccessHandler(showResults)
+      .withFailureHandler(showError)
+      .franklinWrappedAnalysis(courseId, startDate, endDate, countSlides);
+  }
+  
+  function cancelOperation() {
+    if (!operationInProgress) return;
+    
+    addLogEntry(translations[currentLanguage]['cancelling_operation'] || 'Cancelling operation...', 'warning');
+    const cancellingMessage = translations[currentLanguage]['cancelling_operation'] || "Cancelling operation...";
+    document.getElementById('status').innerHTML = `<div class="loading-spinner inline-spinner"></div> ${cancellingMessage}`;
+    
+    // Clear progress simulation
+    clearInterval(progressInterval);
+    
+    google.script.run
+      .withSuccessHandler(function() {
+        operationInProgress = false;
+        document.getElementById('status').innerHTML = translations[currentLanguage]['operation_cancelled'] || 'Operation cancelled';
+        document.getElementById('analyzeBtn').disabled = false;
+        document.getElementById('cancelBtn').style.display = 'none';
+        document.getElementById('progress').style.display = 'none';
+        addLogEntry(translations[currentLanguage]['operation_cancelled_success'] || 'Operation cancelled successfully', 'warning');
+      })
+      .withFailureHandler(showError)
+      .cancelOperation();
+  }
+
+  function showResults(results) {
+    // Store results globally for CSV generation
+    window.classroomWrappedResults = results; 
+    
+    console.log("[DEBUG] Received results from server:", results); // Log received object immediately
+    
+    // Clear progress simulation
+    clearInterval(progressInterval);
+    
+    // Check for errors returned from server-side
+    if (results && results.error) {
+      console.log("[DEBUG] Server returned an error object.", results.error);
+      
+      // Handle the improved error object structure
+      if (typeof results.error === 'object') {
+        // New structure with message, cancelled, and timestamp
+        const errorMsg = results.error.message || 'An unknown error occurred';
+        const cancelled = results.error.cancelled || false;
+        const timestamp = results.error.timestamp || null;
+        
+        showError(errorMsg, cancelled);
+        
+        // If we have a timestamp, add it to the error log
+        if (timestamp) {
+          // Add timestamp to the latest log entry
+          const logEntries = document.querySelectorAll('.log-entry');
+          if (logEntries.length > 0) {
+            const lastEntry = logEntries[logEntries.length - 1];
+            const timestampSpan = document.createElement('span');
+            timestampSpan.className = 'log-entry-timestamp';
+            timestampSpan.textContent = new Date(timestamp).toLocaleString();
+            lastEntry.insertBefore(timestampSpan, lastEntry.firstChild);
+          }
+        }
+      } else {
+        // Legacy format (string error or simple object)
+        showError(results.error, results.cancelled); 
+      }
+      return;
+    }
+    
+    operationInProgress = false;
+    document.getElementById('status').innerHTML = translations[currentLanguage]['analysis_completed'] || 'Analysis completed!';
+    document.getElementById('analyzeBtn').disabled = false;
+    document.getElementById('cancelBtn').style.display = 'none';
+    document.getElementById('progressBar').style.width = '100%';
+    
+    // Hide fetch logs button when results load successfully
+    document.getElementById('fetchLogsBtn').style.display = 'none';
+    
+    // Reset progress bar after 2 seconds
+    setTimeout(() => {
+      document.getElementById('progress').style.display = 'none';
+      document.getElementById('progressBar').style.width = '0%';
+    }, 2000);
+    
+    // Display results in a Spotify Wrapped style
+    const resultsContainer = document.getElementById('resultsContainer');
+    resultsContainer.style.display = 'block';
+    resultsContainer.innerHTML = ''; // Clear previous results
+    
+    // Check if results and necessary data exist
+    console.log("[DEBUG] Checking for results.courseDetails before displaying..."); // Log before the check
+    if (!results || !results.courseDetails) {
+      showError("Analysis completed, but no course details were found.");
+      console.error("[DEBUG] Invalid results object for display:", results); // Log the invalid object
+      return;
+    }
+    
+    // Add Charts.js library if not already present
+    if (typeof Chart === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+        script.onload = () => { displayWrappedContent(results, resultsContainer); };
+        document.head.appendChild(script);
+    } else {
+        displayWrappedContent(results, resultsContainer);
+    }
+
+    // Show the raw data export button/area
+    document.getElementById('rawDataContainer').style.display = 'block';
+    document.getElementById('showDataBtn').onclick = () => generateAndShowCsv(window.classroomWrappedResults, document.getElementById('anonymizeCsvCheckbox').checked);
+    document.getElementById('csvDisplayArea').style.display = 'none'; // Keep CSV hidden initially
+    document.getElementById('csvOutput').value = ''; // Clear previous CSV
+  }
+
+  // Helper function to get computed style of CSS variables
+  function getCssVariable(variableName) {
+    return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+  }
+
+  // Function to format month abbreviations (Jan, Feb, etc.) from YYYY-MM format
+  function formatMonthLabel(monthStr) {
+    if (!monthStr || monthStr.length < 7) return monthStr;
+    
+    const monthNum = parseInt(monthStr.substring(5, 7)) - 1; // 0-indexed (0 = January)
+    const year = monthStr.substring(0, 4);
+    
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${monthNames[monthNum]} ${year}`;
+  }
+
+  function getChartThemeOptions() {
+    const textColor = getCssVariable('--chart-text');
+    const titleColor = getCssVariable('--text-primary');
+    const gridColor = getCssVariable('--chart-grid');
+    const tooltipBg = getCssVariable('--chart-tooltip-bg');
+    const tooltipColor = getCssVariable('--chart-tooltip-text');
+    
+    // Define the vibrant color sequence using CSS variables
+    const chartColors = [
+      getCssVariable('--chart-color-1'),
+      getCssVariable('--chart-color-2'),
+      getCssVariable('--chart-color-3'),
+      getCssVariable('--chart-color-4'),
+      getCssVariable('--chart-color-5'),
+      getCssVariable('--chart-color-6'),
+    ];
+    // Function to get a color from the sequence, cycling if needed
+    const getColor = (index) => chartColors[index % chartColors.length]; 
+
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      colorSequence: chartColors,
+      getColor: getColor,
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            color: textColor, // Legend text color
+            padding: 15, 
+            font: {
+                size: 12
+            }
+          }
+        },
+        title: { // Default title styling
+          display: true,
+          color: titleColor,
+          font: {
+            size: 16, 
+            weight: 'bold'
+          },
+          padding: { top: 10, bottom: 20 }
+        },
+        tooltip: {
+          enabled: true,
+          backgroundColor: tooltipBg,
+          titleColor: tooltipColor,
+          bodyColor: tooltipColor,
+          padding: 10,
+          cornerRadius: 6,
+          borderColor: gridColor, // Use grid color for subtle border
+          borderWidth: 1,
+          callbacks: {
+            title: function(tooltipItems) {
+              // Format month title in tooltips
+              const title = tooltipItems[0].label;
+              if (title && title.match(/^\d{4}-\d{2}$/)) {
+                return formatMonthLabel(title);
+              }
+              return title;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          border: { display: true, color: gridColor },
+          grid: {
+            color: gridColor,
+            drawTicks: true,
+          },
+          ticks: {
+            color: textColor,
+            font: { size: 12, weight: '500' },
+            padding: 8,
+            autoSkip: true,
+            maxRotation: 45,
+            minRotation: 0,
+            display: true,
+            callback: function(value, index, values) {
+              // Format YYYY-MM dates to abbreviated month names
+              const label = this.getLabelForValue(value);
+              if (label && label.match(/^\d{4}-\d{2}$/)) {
+                return formatMonthLabel(label);
+              }
+              return label;
+            }
+          },
+          title: { 
+            display: true, 
+            color: textColor,
+            font: { size: 14, weight: '600'},
+            padding: { top: 10, bottom: 10 }
+          }
+        },
+        y: {
+          border: { display: false }, // Hide y-axis line itself
+          grid: {
+            color: gridColor,
+            drawTicks: false,
+          },
+          ticks: {
+            color: textColor,
+            font: { size: 11 },
+            // Optional: format ticks (e.g., add commas)
+             callback: function(value) { 
+                if (Number.isInteger(value)) { return value; } // Only show integers for counts
+             } 
+          },
+          title: {
+            display: true,
+            color: textColor,
+            font: { size: 13, weight: '500'}
+          },
+          beginAtZero: true
+        }
+      }
+    };
+  }
+
+  function displayWrappedContent(results, container) {
+    // Course info
+    const courseTitle = document.createElement('h2');
+    courseTitle.textContent = results.courseDetails.name + ' Wrapped';
+    courseTitle.className = 'animated';
+    container.appendChild(courseTitle);
+    
+    // Add section padding
+    const section1Padding = document.createElement('div');
+    section1Padding.className = 'section-padding';
+    section1Padding.style.height = '30px';
+    container.appendChild(section1Padding);
+    
+    // --- 1. Assignment Creation Stats ---
+    if (results.assignmentCreationStats) {
+        // Add Stat Cards for Assignment Counts
+        container.appendChild(createStatCard('total_assignments', results.assignmentCreationStats.totalAssignments || 0, 'fas fa-tasks', 'animated-delay-2')); 
+        container.appendChild(createStatCard('assignments_with_deadline', results.assignmentCreationStats.totalWithDeadline || 0, 'fas fa-calendar-check', 'animated-delay-3'));
+        container.appendChild(createStatCard('assignments_without_deadline', results.assignmentCreationStats.totalWithoutDeadline || 0, 'fas fa-calendar-times', 'animated-delay-4'));
+
+        // Assignment Creation Timeline Chart
+        const assignmentCreationCtx = createCanvas('assignmentCreationChart', translations[currentLanguage]['assignments_created_over_time'] || 'Assignments Created Over Time', container, 'animated-delay-5'); 
+        const withDeadlineData = results.assignmentCreationStats.withDeadlineByMonth || {};
+        const withoutDeadlineData = results.assignmentCreationStats.withoutDeadlineByMonth || {};
+        
+        // Combine and sort all months from both datasets
+        const allMonths = [...new Set([...Object.keys(withDeadlineData), ...Object.keys(withoutDeadlineData)])].sort();
+
+        if (allMonths.length > 0) {
+          const themeOptionsStackedBar = getChartThemeOptions();
+          activeCharts['assignmentCreationChart'] = new Chart(assignmentCreationCtx, {
+            type: 'bar', 
+            data: {
+              labels: allMonths,
+              datasets: [
+                {
+                  label: translations[currentLanguage]['with_deadline'] || 'With Deadline',
+                  data: allMonths.map(month => withDeadlineData[month] || 0),
+                  backgroundColor: themeOptionsStackedBar.getColor(3), // Use Green
+                  borderRadius: 4
+                },
+                {
+                  label: translations[currentLanguage]['without_deadline'] || 'Without Deadline',
+                  data: allMonths.map(month => withoutDeadlineData[month] || 0),
+                  backgroundColor: themeOptionsStackedBar.getColor(4), // Use Yellow
+                  borderRadius: 4
+                }
+              ]
+            },
+            options: {
+               ...themeOptionsStackedBar,
+               scales: {
+                 ...themeOptionsStackedBar.scales,
+                 x: {
+                   ...themeOptionsStackedBar.scales.x,
+                   stacked: true, 
+                   title: { ...themeOptionsStackedBar.scales.x.title, text: translations[currentLanguage]['month'] || 'Month' }
+                 },
+                 y: {
+                   ...themeOptionsStackedBar.scales.y,
+                   stacked: true,
+                   title: { ...themeOptionsStackedBar.scales.y.title, text: translations[currentLanguage]['number_of_assignments_created'] || 'Number of Assignments Created' }
+                 }
+               },
+               plugins: {
+                 ...themeOptionsStackedBar.plugins,
+                 legend: { // Keep specific legend settings
+                    ...themeOptionsStackedBar.plugins.legend,
+                    position: 'top'
+                 },
+                 title: {
+                   ...themeOptionsStackedBar.plugins.title,
+                   text: translations[currentLanguage]['assignments_created_with_without_deadline'] || 'Assignments Created (With vs. Without Deadline)'
+                 }
+               }
+            }
+          });
+        }
+    }
+    
+    // Add section padding
+    const section2Padding = document.createElement('div');
+    section2Padding.className = 'section-padding';
+    section2Padding.style.height = '30px';
+    container.appendChild(section2Padding);
+    
+    // --- 2. Submission Stats --- 
+    if (results.submissionStats) {
+        // Basic submission stats
+        container.appendChild(createStatCard('total_submissions', results.submissionStats.totalSubmissions, 'fas fa-paper-plane', 'animated-delay-6'));
+        container.appendChild(createStatCard('on_time_rate', `${results.submissionStats.completionRate}%`, 'fas fa-check-circle', 'animated-delay-7')); 
+        
+        // Move Submissions by Day of Week radar chart here
+        if (results.submissionStats.submissionsByDay) {
+          // By Day of Week
+          const dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          const submissionDayCtx = createCanvas('submissionDayChart', translations[currentLanguage]['submission_activity_by_day'] || 'Submission Activity by Day', container, 'animated-delay-8');
+          const themeOptionsRadar = getChartThemeOptions();
+          activeCharts['submissionDayChart'] = new Chart(submissionDayCtx, {
+            type: 'radar',
+            data: {
+              labels: dayLabels,
+              datasets: [{
+                label: translations[currentLanguage]['submissions'] || 'Submissions',
+                data: results.submissionStats.submissionsByDay,
+                fill: true,
+                backgroundColor: themeOptionsRadar.getColor(0) + '66', // Pink with alpha
+                borderColor: themeOptionsRadar.getColor(0), // Pink
+                pointBackgroundColor: themeOptionsRadar.getColor(0), // Pink
+                pointBorderColor: getCssVariable('--chart-bg'), // Match background
+                pointHoverBackgroundColor: getCssVariable('--chart-bg'),
+                pointHoverBorderColor: themeOptionsRadar.getColor(0)
+              }]
+            },
+            options: {
+               ...themeOptionsRadar,
+               elements: {
+                 line: { 
+                    tension: 0.1 
+                 },
+                 point: { // Style radar points
+                    radius: 3,
+                    hoverRadius: 5
+                 }
+               },
+               scales: { // Specific styling for radar scales
+                    r: { // Radial axis (the spokes)
+                        angleLines: { color: getCssVariable('--chart-grid') }, // Lines from center to edge
+                        grid: { color: getCssVariable('--chart-grid') }, // Concentric circles
+                        pointLabels: { color: getCssVariable('--text-secondary'), font: { size: 12 } }, // Labels (Mon, Tue...)
+                        ticks: { 
+                            color: getCssVariable('--text-secondary'), 
+                            backdropColor: 'rgba(0,0,0,0)', // Transparent backdrop for ticks
+                            font: { size: 10 },
+                            stepSize: Math.max(1, Math.ceil(Math.max(...results.submissionStats.submissionsByDay) / 4)) // Auto step size
+                        }
+                    }
+               },
+               plugins: {
+                  ...themeOptionsRadar.plugins,
+                  legend: { display: false },
+                  title: {
+                     ...themeOptionsRadar.plugins.title,
+                     text: translations[currentLanguage]['submission_activity_by_day'] || 'Submission Activity by Day'
+                  }
+               }
+            }
+          });
+        }
+        
+        container.appendChild(createStatCard('total_student_files', results.submissionStats.totalStudentFiles || 0, 'fas fa-file-upload', 'animated-delay-9'));
+        
+        // Student Files Over Time Chart
+        if (results.submissionStats.studentFilesByMonth) {
+            const studentFilesTimeCtx = createCanvas('studentFilesTimeChart', translations[currentLanguage]['student_files_over_time'] || 'Student Files Uploaded Over Time', container, 'animated-delay-10');
+            const studentFileMonths = Object.keys(results.submissionStats.studentFilesByMonth || {}).sort();
+            if (studentFileMonths.length > 0) {
+              const themeOptionsLine = getChartThemeOptions();
+              activeCharts['studentFilesTimeChart'] = new Chart(studentFilesTimeCtx, {
+                  type: 'line',
+                  data: {
+                      labels: studentFileMonths,
+                      datasets: [{
+                          label: translations[currentLanguage]['student_files_per_month'] || 'Student Files Uploaded per Month',
+                          data: studentFileMonths.map(month => results.submissionStats.studentFilesByMonth[month]),
+                          backgroundColor: themeOptionsLine.getColor(1) + '66', // Purple with alpha
+                          borderColor: themeOptionsLine.getColor(1), // Purple
+                          fill: true,
+                          tension: 0.3, // Smoother curve
+                          pointBackgroundColor: themeOptionsLine.getColor(1),
+                          pointRadius: 4,
+                          pointHoverRadius: 6
+                      }]
+                  },
+                  options: {
+                       ...themeOptionsLine,
+                       scales: {
+                           ...themeOptionsLine.scales,
+                           y: {
+                               ...themeOptionsLine.scales.y,
+                               title: { ...themeOptionsLine.scales.y.title, text: translations[currentLanguage]['number_of_student_files'] || 'Number of Student Files' }
+                           },
+                           x: {
+                                ...themeOptionsLine.scales.x,
+                               title: { ...themeOptionsLine.scales.x.title, text: translations[currentLanguage]['month'] || 'Month' }
+                           }
+                       },
+                       plugins: {
+                           ...themeOptionsLine.plugins,
+                           legend: { display: false },
+                           title: {
+                               ...themeOptionsLine.plugins.title,
+                               text: translations[currentLanguage]['student_files_over_time'] || 'Student Files Uploaded Over Time'
+                           }
+                       }
+                  }
+              });
+            }
+        }
+
+        // Submissions Over Time Bar Chart
+        const submissionTimeCtx = createCanvas('submissionTimeChart', translations[currentLanguage]['submissions_over_time'] || 'Submissions Over Time', container, 'animated-delay-11');
+        const submissionMonths = Object.keys(results.submissionStats.submissionsByMonth || {}).sort();
+        if (submissionMonths.length > 0) {
+          const themeOptionsBar = getChartThemeOptions();
+          activeCharts['submissionTimeChart'] = new Chart(submissionTimeCtx, {
+              type: 'bar',
+              data: {
+                  labels: submissionMonths,
+                  datasets: [{
+                      label: translations[currentLanguage]['submissions_per_month'] || 'Submissions per Month',
+                      data: submissionMonths.map(month => results.submissionStats.submissionsByMonth[month]),
+                      backgroundColor: themeOptionsBar.getColor(2), // Use Blue
+                      borderColor: themeOptionsBar.getColor(2),
+                      borderWidth: 1,
+                      borderRadius: 4 // Slightly rounded bars
+                  }]
+              },
+              options: {
+                   ...themeOptionsBar, // Spread base options
+                   scales: {
+                       ...themeOptionsBar.scales, // Spread base scales
+                       y: {
+                           ...themeOptionsBar.scales.y,
+                           title: { ...themeOptionsBar.scales.y.title, text: translations[currentLanguage]['number_of_submissions'] || 'Number of Submissions' }
+                       },
+                       x: {
+                           ...themeOptionsBar.scales.x,
+                           title: { ...themeOptionsBar.scales.x.title, text: translations[currentLanguage]['month'] || 'Month' }
+                       }
+                   },
+                   plugins: {
+                       ...themeOptionsBar.plugins,
+                       legend: { display: false }, // Keep legend hidden for single dataset
+                       title: {
+                           ...themeOptionsBar.plugins.title,
+                           text: translations[currentLanguage]['submissions_over_time'] || 'Submissions Over Time' // Specific title
+                       }
+                   }
+              }
+          });
+        }
+
+        // By Hour of Day
+        if (results.submissionStats.submissionsByHour) {
+          const hourLabels = Array.from({ length: 24 }, (_, i) => `${i}:00`); // 0:00 to 23:00
+          const submissionHourCtx = createCanvas('submissionHourChart', translations[currentLanguage]['submissions_by_hour'] || 'Submissions by Hour of Day', container, 'animated-delay-12');
+          const themeOptionsHourLine = getChartThemeOptions();
+          activeCharts['submissionHourChart'] = new Chart(submissionHourCtx, {
+            type: 'line',
+            data: {
+              labels: hourLabels,
+              datasets: [{
+                label: translations[currentLanguage]['submissions'] || 'Submissions',
+                data: results.submissionStats.submissionsByHour,
+                borderColor: themeOptionsHourLine.getColor(4), // Yellow
+                backgroundColor: themeOptionsHourLine.getColor(4) + '4D', // Yellow with alpha
+                tension: 0.3,
+                fill: true,
+                pointBackgroundColor: themeOptionsHourLine.getColor(4),
+                pointRadius: 2,
+                pointHoverRadius: 5
+              }]
+            },
+            options: {
+               ...themeOptionsHourLine,
+               scales: {
+                  ...themeOptionsHourLine.scales,
+                  y: {
+                     ...themeOptionsHourLine.scales.y,
+                     title: { ...themeOptionsHourLine.scales.y.title, text: translations[currentLanguage]['number_of_submissions'] || 'Number of Submissions' }
+                  },
+                  x: {
+                     ...themeOptionsHourLine.scales.x,
+                     title: { ...themeOptionsHourLine.scales.x.title, text: translations[currentLanguage]['hour_of_day'] || 'Hour of Day' }
+                  }
+               },
+               plugins: {
+                  ...themeOptionsHourLine.plugins,
+                  legend: { display: false },
+                  title: {
+                     ...themeOptionsHourLine.plugins.title,
+                     text: translations[currentLanguage]['submission_activity_by_hour'] || 'Submission Activity by Hour'
+                  }
+               }
+            }
+          });
+        }
+
+        // Early Bird / Night Owl Stats
+        if (results.averageTimeStats) {
+            const earlyBirdData = results.averageTimeStats.earlyBird;
+            const nightOwlData = results.averageTimeStats.nightOwl;
+
+            // Create Early Bird card
+            const earlyBirdCard = document.createElement('div');
+            earlyBirdCard.className = 'stat-card animated-delay-13';
+            
+            // Create title container with icon and title side by side
+            const earlyBirdTitleContainer = document.createElement('div');
+            earlyBirdTitleContainer.className = 'stat-header';
+            
+            const earlyBirdIcon = document.createElement('i');
+            earlyBirdIcon.className = 'fas fa-sun stat-icon';
+            earlyBirdTitleContainer.appendChild(earlyBirdIcon);
+            
+            const earlyBirdTitle = document.createElement('div');
+            earlyBirdTitle.className = 'stat-title';
+            earlyBirdTitle.setAttribute('data-lang-key', 'early_bird');
+            earlyBirdTitle.textContent = translations[currentLanguage]['early_bird'] || 'Early Bird';
+            earlyBirdTitleContainer.appendChild(earlyBirdTitle);
+            
+            earlyBirdCard.appendChild(earlyBirdTitleContainer);
+            
+            // Create value (student name) element
+            const earlyBirdText = earlyBirdData ? `${earlyBirdData.name} (Avg ${earlyBirdData.time})` : 'None found (5am-10am)';
+            const earlyBirdValue = document.createElement('div');
+            earlyBirdValue.className = 'stat-value';
+            earlyBirdValue.textContent = earlyBirdText;
+            earlyBirdCard.appendChild(earlyBirdValue);
+            
+            // Create subtitle element
+            const earlyBirdSubtitle = document.createElement('div');
+            earlyBirdSubtitle.className = 'stat-subtitle';
+            earlyBirdSubtitle.setAttribute('data-lang-key', 'earliest_average_submission');
+            earlyBirdSubtitle.textContent = translations[currentLanguage]['earliest_average_submission'] || 'Earliest average submission';
+            earlyBirdCard.appendChild(earlyBirdSubtitle);
+            
+            container.appendChild(earlyBirdCard);
+
+            // Create Night Owl card
+            const nightOwlCard = document.createElement('div');
+            nightOwlCard.className = 'stat-card animated-delay-14';
+            
+            // Create title container with icon and title side by side
+            const nightOwlTitleContainer = document.createElement('div');
+            nightOwlTitleContainer.className = 'stat-header';
+            
+            const nightOwlIcon = document.createElement('i');
+            nightOwlIcon.className = 'fas fa-moon stat-icon';
+            nightOwlTitleContainer.appendChild(nightOwlIcon);
+            
+            const nightOwlTitle = document.createElement('div');
+            nightOwlTitle.className = 'stat-title';
+            nightOwlTitle.setAttribute('data-lang-key', 'night_owl');
+            nightOwlTitle.textContent = translations[currentLanguage]['night_owl'] || 'Night Owl';
+            nightOwlTitleContainer.appendChild(nightOwlTitle);
+            
+            nightOwlCard.appendChild(nightOwlTitleContainer);
+            
+            // Create value (student name) element
+            const nightOwlText = nightOwlData ? `${nightOwlData.name} (Avg ${nightOwlData.time})` : 'None found (8pm-5am)';
+            const nightOwlValue = document.createElement('div');
+            nightOwlValue.className = 'stat-value';
+            nightOwlValue.textContent = nightOwlText;
+            nightOwlCard.appendChild(nightOwlValue);
+            
+            // Create subtitle element
+            const nightOwlSubtitle = document.createElement('div');
+            nightOwlSubtitle.className = 'stat-subtitle';
+            nightOwlSubtitle.setAttribute('data-lang-key', 'latest_average_submission');
+            nightOwlSubtitle.textContent = translations[currentLanguage]['latest_average_submission'] || 'Latest average submission';
+            nightOwlCard.appendChild(nightOwlSubtitle);
+            
+            container.appendChild(nightOwlCard);
+        }
+    }
+    
+    // Add section padding
+    const section3Padding = document.createElement('div');
+    section3Padding.className = 'section-padding';
+    section3Padding.style.height = '30px';
+    container.appendChild(section3Padding);
+    
+    // --- 3. Presentation Slides Analysis ---
+    if (results.materialStats && results.materialStats.presentations) {
+        const slideStats = results.materialStats.presentations;
+        
+        // Check if slides were counted AND have values greater than 0
+        if (slideStats.totalSlides !== null && slideStats.totalSlides !== undefined && slideStats.totalSlides > 0) {
+            // Slides were counted and have positive values
+            container.appendChild(createStatCard('total_presentations', slideStats.count || 0, 'fas fa-file-powerpoint', 'animated-delay-15'));
+            container.appendChild(createStatCard('total_slides', slideStats.totalSlides || 0, 'fas fa-clone', 'animated-delay-16'));
+            
+            if (slideStats.count > 0) {
+                // Calculate average slides per presentation
+                const avgSlides = Math.round((slideStats.totalSlides / slideStats.count) * 10) / 10; // Round to 1 decimal
+                container.appendChild(createStatCard('avg_slides_per_presentation', avgSlides, 'fas fa-calculator', 'animated-delay-17'));
+            }
+        } else {
+            // Slides weren't counted or have 0 value, show button to count them
+            const slideStatsCard = document.createElement('div');
+            slideStatsCard.className = 'stat-card animated-delay-15';
+            
+            const icon = document.createElement('i');
+            icon.className = 'fas fa-file-powerpoint stat-icon';
+            slideStatsCard.appendChild(icon);
+            
+            const content = document.createElement('div');
+            content.className = 'stat-content';
+            
+            const titleEl = document.createElement('div');
+            titleEl.className = 'stat-title';
+            titleEl.setAttribute('data-lang-key', 'slide_data');
+            titleEl.textContent = translations[currentLanguage]['slide_data'] || 'Slide Data';
+            content.appendChild(titleEl);
+            
+            const buttonEl = document.createElement('button');
+            buttonEl.className = 'action-btn';
+            buttonEl.textContent = translations[currentLanguage]['load_slide_data'] || 'Load Slide Data';
+            buttonEl.onclick = function() {
+                // Retrieve slide data
+                buttonEl.disabled = true;
+                buttonEl.textContent = translations[currentLanguage]['loading'] || 'Loading...';
+                
+                // Set the checkbox to true and rerun analysis for slides only
+                document.getElementById('countSlidesCheckbox').checked = true;
+                
+                // Store the course ID for the callback
+                const currentCourseId = results.courseDetails.id;
+                
+                google.script.run
+                    .withSuccessHandler(function(updatedResults) {
+                        if (updatedResults && updatedResults.materialStats && updatedResults.materialStats.presentations) {
+                            // Remove this card
+                            container.removeChild(slideStatsCard);
+                            
+                            // Update the results and redisplay
+                            const slideStats = updatedResults.materialStats.presentations;
+                            container.appendChild(createStatCard('total_presentations', slideStats.count, 'fas fa-file-powerpoint', 'animated-delay-15'));
+                            container.appendChild(createStatCard('total_slides', slideStats.totalSlides, 'fas fa-clone', 'animated-delay-16'));
+                            
+                            if (slideStats.count > 0) {
+                                const avgSlides = Math.round((slideStats.totalSlides / slideStats.count) * 10) / 10;
+                                container.appendChild(createStatCard('avg_slides_per_presentation', avgSlides, 'fas fa-calculator', 'animated-delay-17'));
+                            }
+                        } else {
+                            // Show error if needed
+                            buttonEl.textContent = translations[currentLanguage]['error_loading'] || 'Error Loading Data';
+                            setTimeout(() => {
+                                buttonEl.disabled = false;
+                                buttonEl.textContent = translations[currentLanguage]['try_again'] || 'Try Again';
+                            }, 2000);
+                        }
+                    })
+                    .withFailureHandler(function(error) {
+                        console.error("Error loading slide data:", error);
+                        buttonEl.textContent = translations[currentLanguage]['error_loading'] || 'Error Loading Data';
+                        setTimeout(() => {
+                            buttonEl.disabled = false;
+                            buttonEl.textContent = translations[currentLanguage]['try_again'] || 'Try Again';
+                        }, 2000);
+                    })
+                    .runSlideAnalysisOnly(currentCourseId);
+            };
+            
+            content.appendChild(buttonEl);
+            slideStatsCard.appendChild(content);
+            container.appendChild(slideStatsCard);
+        }
+    }
+    
+    // Add section padding
+    const section4Padding = document.createElement('div');
+    section4Padding.className = 'section-padding';
+    section4Padding.style.height = '30px';
+    container.appendChild(section4Padding);
+    
+    // --- 4. Other Charts (Only keep Top Students) ---
+    
+    // --- Engagement Stats --- 
+    // Ensure engagementData and studentInteractions exist and are objects before processing
+    const engagementData = (results.engagementData && typeof results.engagementData === 'object') ? results.engagementData : {};
+    const studentInteractions = (engagementData.studentInteractions && typeof engagementData.studentInteractions === 'object') ? engagementData.studentInteractions : {};
+
+    if (Object.keys(studentInteractions).length > 0) {
+        const interactions = Object.values(studentInteractions);
+        // Sort students by submission count, descending
+        interactions.sort((a, b) => b.submissionCount - a.submissionCount);
+        const topStudents = interactions.slice(0, 5); // Get top 5
+        
+        if (topStudents.length > 0) {
+            const engagementCtx = createCanvas('engagementChart', translations[currentLanguage]['top_students_by_submissions'] || 'Top 5 Students by Submissions', container, 'animated-delay-18');
+            const themeOptionsEngageBar = getChartThemeOptions();
+            activeCharts['engagementChart'] = new Chart(engagementCtx, {
+                type: 'bar',
+                data: {
+                    labels: topStudents.map((s, i) => `${i+1}. ${s.name}`),
+                    datasets: [{
+                        label: translations[currentLanguage]['submissions_count'] || 'Submissions Count',
+                        data: topStudents.map(s => s.submissionCount),
+                        backgroundColor: themeOptionsEngageBar.getColor(1), // Purple
+                        borderColor: themeOptionsEngageBar.getColor(1),
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    ...themeOptionsEngageBar,
+                    indexAxis: 'y', // Keep horizontal bar chart
+                    scales: {
+                        ...themeOptionsEngageBar.scales,
+                        x: {
+                            ...themeOptionsEngageBar.scales.x,
+                            title: { ...themeOptionsEngageBar.scales.x.title, text: translations[currentLanguage]['number_of_submissions'] || 'Number of Submissions' }
+                        },
+                         y: {
+                            ...themeOptionsEngageBar.scales.y,
+                            title: { display: false }, // Hide y-axis title (student names are clear)
+                            ticks: {
+                                ...themeOptionsEngageBar.scales.y.ticks,
+                                callback: function(value, index) {
+                                    return index + 1;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...themeOptionsEngageBar.plugins,
+                        legend: { display: false },
+                        title: {
+                            ...themeOptionsEngageBar.plugins.title,
+                            text: translations[currentLanguage]['top_students_by_submissions'] || 'Top 5 Students by Submissions'
+                        }
+                    }
+                }
+            });
+        }
+    }
+  }
+
+  // Helper function to create a stat card
+  function createStatCard(title, value, iconClass, animationClass) {
+    const card = document.createElement('div');
+    card.className = `stat-card ${animationClass}`;
+    
+    const icon = document.createElement('i');
+    icon.className = `${iconClass} stat-icon`;
+    card.appendChild(icon);
+    
+    const content = document.createElement('div');
+    content.className = 'stat-content';
+    
+    const valueEl = document.createElement('div');
+    valueEl.className = 'stat-value';
+    valueEl.textContent = value;
+    content.appendChild(valueEl);
+    
+    const titleEl = document.createElement('div');
+    titleEl.className = 'stat-title';
+    
+    // Check if we have a translation key for this title
+    const translationKey = title.toLowerCase().replace(/[^\w]+/g, '_');
+    titleEl.setAttribute('data-lang-key', translationKey);
+    
+    // Set the title with translation if available
+    const translatedTitle = translations[currentLanguage] && 
+                           translations[currentLanguage][translationKey] ? 
+                           translations[currentLanguage][translationKey] : 
+                           title;
+    titleEl.textContent = translatedTitle;
+    
+    content.appendChild(titleEl);
+    card.appendChild(content);
+    
+    return card;
+  }
+
+  // Helper function to create a canvas element and its container
+  function createCanvas(id, title, container, animationClass) {
+    // First destroy any existing chart with this id to prevent memory leaks
+    if (activeCharts[id]) {
+      activeCharts[id].destroy();
+      delete activeCharts[id];
+    }
+    
+    const chartContainer = document.createElement('div');
+    chartContainer.className = `chart-container ${animationClass}`;
+    
+    const chartTitle = document.createElement('h4');
+    chartTitle.textContent = title;
+    chartContainer.appendChild(chartTitle);
+    
+    const canvas = document.createElement('canvas');
+    canvas.id = id;
+    chartContainer.appendChild(canvas);
+    
+    container.appendChild(chartContainer);
+    return canvas.getContext('2d');
+  }
+
+  function showError(error, cancelled = false) {
+    console.error("Error handler:", error);
+    clearInterval(progressInterval); // Stop any ongoing progress simulation
+    operationInProgress = false;
+    
+    const statusDiv = document.getElementById('status');
+    const errorMsg = (typeof error === 'string') ? error : (error.message || 'An unknown error occurred');
+    statusDiv.innerHTML = cancelled ? 'Operation Cancelled' : `Error: ${errorMsg}`;
+    statusDiv.style.color = cancelled ? 'orange' : 'red'; // Use orange for cancelled
+    
+    // Add error to logs
+    addLogEntry(errorMsg, cancelled ? 'warning' : 'error');
+    
+    document.getElementById('analyzeBtn').disabled = false;
+    document.getElementById('cancelBtn').style.display = 'none';
+    document.getElementById('progress').style.display = 'none';
+    
+    // Show server logs button when an error occurs
+    document.getElementById('fetchLogsBtn').style.display = 'inline-block';
+  }
+  
+  // Function to fetch and display server logs
+  function fetchServerLogs() {
+    // Add a loading message
+    addLogEntry(translations[currentLanguage]['fetching_server_logs'] || 'Fetching server logs...', 'info');
+    
+    document.getElementById('fetchLogsBtn').disabled = true;
+    
+    google.script.run
+      .withSuccessHandler(function(logs) {
+        // Clear the loading message
+        document.getElementById('fetchLogsBtn').disabled = false;
+        
+        if (!logs || logs.length === 0) {
+          addLogEntry(translations[currentLanguage]['no_server_logs'] || 'No server logs available', 'warning');
+          return;
+        }
+        
+        // Add a separator
+        addLogEntry('--- ' + (translations[currentLanguage]['server_logs'] || 'SERVER LOGS') + ' ---', 'info');
+        
+        // Add each log entry
+        logs.forEach(function(log) {
+          addLogEntry(log.message, log.level, log.timestamp);
+        });
+        
+        // Make sure logs are visible
+        document.getElementById('logOutput').style.display = 'block';
+        document.getElementById('logToggleBtn').textContent = 'Hide Logs ▲';
+      })
+      .withFailureHandler(function(error) {
+        document.getElementById('fetchLogsBtn').disabled = false;
+        addLogEntry('Failed to fetch server logs: ' + error, 'error');
+      })
+      .getServerLogs(50); // Get up to 50 most recent log entries
+  }
+  
+  // Load Font Awesome for icons
+  (function() {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+    document.head.appendChild(link);
+  })();
+
+  // Log access
+  google.script.run
+    .withSuccessHandler(function(result) {
+      console.log("Logged in as: " + (result.user || "unknown"));
+    })
+    .logAccess();
+
+  /**
+   * Generates a simplified CSV string from the results and displays it.
+   * Allows optional anonymization of student names.
+   * @param {object} results - The analysis results object.
+   * @param {boolean} anonymize - Whether to anonymize student names.
+   */
+  function generateAndShowCsv(results, anonymize) {
+    if (!results) {
+      document.getElementById('csvOutput').value = "Error: No results data available.";
+      document.getElementById('csvDisplayArea').style.display = 'block';
+      return;
+    }
+
+    let csv = "Category,Metric,Value\n"; // Header
+
+    // Course Details
+    if (results.courseDetails) {
+      csv += `Course,Name,"${results.courseDetails.name}"\n`;
+      csv += `Course,ID,${results.courseDetails.id}\n`;
+    }
+
+    // Submission Stats
+    if (results.submissionStats) {
+       Object.entries(results.submissionStats).forEach(([key, value]) => {
+         if (typeof value === 'number' || typeof value === 'string') { // Simple stats
+           csv += `Submissions,${key},${value}\n`;
+         } else if (key === 'submissionsByMonth' || key === 'studentFilesByMonth') { // Monthly data
+            Object.entries(value).forEach(([month, count]) => {
+              csv += `Submissions - ${key},${month},${count}\n`;
+            });
+         } else if (key === 'submissionsByDay') {
+            const dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            value.forEach((count, index) => {
+               csv += `Submissions - By Day,${dayLabels[index]},${count}\n`;
+            });
+         } else if (key === 'submissionsByHour') {
+             value.forEach((count, index) => {
+               csv += `Submissions - By Hour,${index}:00,${count}\n`;
+            });
+         } else if (key === 'studentAttachmentTypes') {
+             Object.entries(value).forEach(([type, count]) => {
+               csv += `Submissions - Attachment Type,${type},${count}\n`;
+            });
+         } // Add more handling for submissionRatesByAssignment if needed
+       });
+    }
+    
+    // Assignment Creation Stats
+    if (results.assignmentCreationStats) {
+        Object.entries(results.assignmentCreationStats).forEach(([key, value]) => {
+         if (typeof value === 'number' || typeof value === 'string') { 
+           csv += `Assignments,${key},${value}\n`;
+         } else if (key === 'withDeadlineByMonth' || key === 'withoutDeadlineByMonth') { 
+            Object.entries(value).forEach(([month, count]) => {
+              csv += `Assignments - ${key},${month},${count}\n`;
+            });
+         }
+       });
+    }
+    
+    // *** MODIFIED Engagement Data Section ***
+    if (results.engagementData && results.engagementData.studentInteractions) {
+        const header = anonymize ? "PseudoStudentID" : "StudentName";
+        const sectionTitle = anonymize ? "Student Interactions (Anonymized)" : "Student Interactions";
+        csv += `\n${sectionTitle}\n`;
+        csv += `${header},SubmissionCount\n`; // Updated header based on anonymize flag
+
+        let studentCounter = 1;
+        // Ensure we iterate using studentId as key to access the name if needed
+        Object.keys(results.engagementData.studentInteractions).forEach(studentId => {
+            const interaction = results.engagementData.studentInteractions[studentId];
+            const studentIdentifier = anonymize ? `Student_${studentCounter}` : `"${interaction.name}"`; // Use name or pseudo-ID, add quotes to name
+            csv += `${studentIdentifier},${interaction.submissionCount}\n`;
+            studentCounter++;
+        });
+    }
+
+    // Early Bird / Night Owl Stats
+    if (results.averageTimeStats) {
+       csv += "\nSubmission Time Averages\n";
+       csv += "Category,Student,AverageTime\n";
+       if (results.averageTimeStats.earlyBird) {
+           // Use anonymized name if flag is true
+           const earlyBirdName = anonymize ? "Early Bird" : `"${results.averageTimeStats.earlyBird.name}"`; 
+           csv += `Early Bird,${earlyBirdName},${results.averageTimeStats.earlyBird.time}\n`;
+       } else {
+            csv += `Early Bird,N/A,N/A\n`;
+       }
+        if (results.averageTimeStats.nightOwl) {
+           const nightOwlName = anonymize ? "Night Owl" : `"${results.averageTimeStats.nightOwl.name}"`;
+           csv += `Night Owl,${nightOwlName},${results.averageTimeStats.nightOwl.time}\n`;
+       } else {
+            csv += `Night Owl,N/A,N/A\n`;
+       }
+    }
+
+    // Material and Slide Statistics
+    if (results.materialStats && results.materialStats.presentations) {
+        const presentations = results.materialStats.presentations;
+        csv += "\nSlide Statistics\n";
+        csv += `Presentations,Total Count,${presentations.count}\n`;
+        csv += `Presentations,Total Slides,${presentations.totalSlides}\n`;
+        
+        if (presentations.count > 0) {
+            const avgSlides = Math.round((presentations.totalSlides / presentations.count) * 10) / 10;
+            csv += `Presentations,Average Slides Per Presentation,${avgSlides}\n`;
+        }
+    }
+
+    document.getElementById('csvOutput').value = csv;
+    document.getElementById('csvDisplayArea').style.display = 'block';
+    console.log(`Generated CSV data (Anonymized: ${anonymize}).`);
+  }
+</script> 
+
+<div id="rawDataContainer" style="display: none; margin-top: 20px;">
+  <h4>Export (.csv)</h4>
+  <button id="showDataBtn" class="action-btn">Show Data as CSV</button>
+  <label style="margin-left: 15px;">
+    <input type="checkbox" id="anonymizeCsvCheckbox" checked> Anonymize Student Names
+  </label>
+  <div id="csvDisplayArea" style="display: none; margin-top: 10px;">
+    <textarea id="csvOutput" rows="10" cols="80" readonly></textarea>
+  </div>
+</div> 

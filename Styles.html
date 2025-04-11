@@ -1,0 +1,801 @@
+<style>
+  :root {
+    /* Spotify Wrapped Inspired Palette */
+    --primary-bg: #121212; /* Very dark grey */
+    --secondary-bg: #1e1e1e; /* Slightly lighter grey */
+    --card-bg: #282828; /* Card background */
+    --text-primary: #ffffff; /* White */
+    --text-secondary: #b3b3b3; /* Light grey */
+    --accent-pink: #f52f7c;
+    --accent-purple: #a63ef4;
+    --accent-blue: #3e7ff4;
+    --accent-green: #1db954; /* Spotify green */
+    --accent-yellow: #fbbc05;
+    --accent-red: #ea4335; 
+    --border-color: #333333;
+
+    /* Chart specific (can alias from above or define separately) */
+    --chart-text: var(--text-secondary);
+    --chart-grid: rgba(255, 255, 255, 0.1); /* Faint white grid */
+    --chart-bg: var(--card-bg); 
+    --chart-tooltip-bg: rgba(40, 40, 40, 0.9); /* Darker tooltip */
+    --chart-tooltip-text: var(--text-primary);
+    
+    /* Define a sequence of vibrant chart colors */
+    --chart-color-1: var(--accent-pink);
+    --chart-color-2: var(--accent-purple);
+    --chart-color-3: var(--accent-blue);
+    --chart-color-4: var(--accent-green);
+    --chart-color-5: var(--accent-yellow);
+    --chart-color-6: var(--accent-red);
+  }
+
+  /* Global box-sizing rule for consistent sizing */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif; /* Use Poppins as primary */
+    line-height: 1.6;
+    color: var(--text-primary); /* Default text color */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--primary-bg); /* Dark background as default */
+    transition: background-color 0.3s ease;
+  }
+  
+  body.light-mode {
+    background-color: #FFEA00; /* Bright yellow background like Spotify */
+    color: #000000;
+  }
+  
+  h1 {
+    color: var(--accent-green); /* Green color as default */
+    margin-bottom: 24px;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    transition: color 0.3s ease, font-size 0.3s ease, font-weight 0.3s ease;
+  }
+  
+  body.light-mode h1 {
+    color: #000000; /* Black in light mode */
+    font-size: 4em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Bebas Neue', sans-serif;
+    line-height: 0.9;
+    border-bottom: none;
+    -webkit-text-stroke: 0.5px #000;
+  }
+  
+  body.light-mode h2 {
+    color: #000000;
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 0.9;
+    border-bottom: none;
+  }
+  
+  h2 {
+    color: var(--accent-green); /* Use an accent for main titles */
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color); /* Use theme border color */
+    text-align: center; /* Center main title */
+    font-size: 2em; /* Larger title */
+  }
+  
+  h3 {
+    color: var(--text-primary); /* White */
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  
+  h4 {
+    color: var(--text-secondary); /* Lighter grey */
+    margin-top: 16px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  select, button, input {
+    font-family: 'Poppins', sans-serif; /* Use Poppins here too */
+    font-size: 14px;
+    border-radius: 20px; /* More rounded buttons */
+    border: 1px solid var(--border-color);
+    padding: 10px 20px; /* Adjusted padding */
+    background-color: var(--secondary-bg); /* Darker background */
+    color: var(--text-primary); /* White text */
+    transition: all 0.2s;
+  }
+
+  input[type="date"] {
+     color-scheme: dark; /* Hint for date picker theme */
+  }
+  
+  select {
+    width: 100%;
+    margin: 10px 0;
+    height: 45px; /* Adjusted height */
+    cursor: pointer;
+    appearance: none; /* Remove default dropdown arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23b3b3b3" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px; /* Space for arrow */
+  }
+  
+  select:focus, input:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.3); /* Green focus ring */
+  }
+  
+  button {
+    cursor: pointer;
+    font-weight: bold; /* Bold button text */
+    min-height: 45px; /* Adjusted height */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.5px;
+  }
+  
+  button:hover:not(:disabled) {
+    background-color: var(--card-bg); /* Slightly lighter hover */
+    transform: scale(1.02); /* Subtle scale on hover */
+  }
+  
+  button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(29, 185, 84, 0.3);
+  }
+  
+  button:disabled {
+    opacity: 0.5; /* Adjusted disabled opacity */
+    cursor: not-allowed;
+    transform: none; /* Disable hover effect */
+  }
+  
+  /* Specific Button Styles */
+  #analyzeBtn, .action-btn { /* Style primary action buttons */
+    background-color: var(--accent-green);
+    color: var(--primary-bg); /* Dark text on green bg */
+    border: none;
+  }
+  
+  #analyzeBtn:hover:not(:disabled), .action-btn:hover:not(:disabled) {
+    background-color: #1ed760; /* Lighter green on hover */
+  }
+  
+  #cancelBtn {
+    background-color: var(--accent-red);
+    color: var(--text-primary); /* White text on red bg */
+    border: none;
+  }
+  
+  #cancelBtn:hover:not(:disabled) {
+    background-color: #f75f52; /* Lighter red */
+  }
+
+  .button-secondary {
+    background-color: var(--secondary-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+  }
+  
+  .button-secondary:hover {
+    background-color: var(--card-bg);
+    border-color: var(--text-secondary);
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 16px; /* Increased gap */
+    margin-top: 24px;
+    justify-content: center; /* Center buttons */
+  }
+  
+  /* Input options / Radio buttons */
+   .option-group {
+    margin-bottom: 24px;
+    background-color: var(--secondary-bg);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .option-group h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+  }
+
+  .option-item {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+  }
+  
+  .option-item:hover {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+  }
+
+  .option-item input[type="radio"], 
+  .option-item input[type="checkbox"] {
+    margin-right: 12px;
+    accent-color: var(--accent-green); /* Style the radio/checkbox */
+    width: 18px;
+    height: 18px;
+  }
+  
+  .date-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .date-range input {
+    padding: 8px 12px; /* Adjusted padding */
+    flex-grow: 1;
+  }
+
+  #customDateContainer {
+    margin-top: 15px;
+  }
+  
+  #status {
+    margin-top: 24px;
+    color: var(--text-secondary);
+    min-height: 24px;
+    text-align: center; /* Center status text */
+  }
+  
+  #folderLink {
+    margin-top: 12px;
+    text-align: center; /* Center link */
+  }
+  
+  #folderLink a {
+    color: var(--accent-blue); /* Use accent blue for links */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  #folderLink a:hover {
+    text-decoration: underline;
+    color: #6ea9f7; /* Lighter blue on hover */
+  }
+  
+  /* Remove SVG icon for folder link - less common in this style */
+  /* #folderLink a::before { ... } */ 
+  
+  .progress-container {
+    margin-top: 16px;
+    background-color: var(--secondary-bg); /* Darker background */
+    border-radius: 4px;
+    overflow: hidden;
+    height: 8px; /* Thicker bar */
+  }
+  
+  .progress-bar {
+    height: 100%; /* Fill container height */
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink)); /* Gradient progress bar */
+    width: 0%;
+    transition: width 0.4s ease-out; /* Smoother transition */
+    border-radius: 4px;
+  }
+  
+  .loading-spinner {
+    border: 3px solid rgba(29, 185, 84, 0.2); /* Use accent color */
+    border-top: 3px solid var(--accent-green);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite; /* Faster spin */
+    margin: 20px auto;
+    display: inline-block;
+  }
+  
+  .inline-spinner {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .card { /* General card styling - might be less used if results use stat-card */
+    background-color: var(--card-bg); /* Use card background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adjusted shadow for dark theme */
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border-color); /* Subtle border */
+  }
+  
+  /* Results styles */
+  .results-container {
+    margin-top: 32px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center all content */
+  }
+  
+  .stat-card {
+    background: linear-gradient(135deg, var(--secondary-bg), var(--card-bg));
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    padding: 30px 24px;
+    margin-bottom: 24px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px; /* Match chart container width */
+    box-sizing: border-box; /* Add box-sizing to ensure padding is included in width */
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-6px) scale(1.01); /* More noticeable hover effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .stat-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  
+  .stat-header .stat-icon {
+    font-size: 2em;
+    margin-bottom: 0;
+    margin-right: 15px;
+    display: inline-block;
+  }
+  
+  .stat-header .stat-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--text-primary);
+    display: inline-block;
+  }
+  
+  .stat-icon { /* Style the Font Awesome icons in stat cards */
+     font-size: 2em;
+     margin-bottom: 15px;
+     display: block;
+     color: var(--accent-green); /* Default icon color */
+  }
+
+  /* Assign specific colors to different icons if desired */
+  .stat-card .fa-paper-plane { color: var(--accent-blue); }
+  .stat-card .fa-check-circle { color: var(--accent-green); }
+  .stat-card .fa-sun { color: var(--accent-yellow); }
+  .stat-card .fa-moon { color: var(--accent-purple); }
+  .stat-card .fa-file-upload { color: var(--accent-pink); }
+  .stat-card .fa-tasks { color: var(--accent-blue); }
+  .stat-card .fa-calendar-check { color: var(--accent-green); }
+  .stat-card .fa-calendar-times { color: var(--accent-red); }
+
+
+  .stat-value {
+    font-size: 3em; /* Larger value */
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    color: var(--text-primary); /* White value */
+    line-height: 1.2;
+  }
+  
+  .stat-title { /* Renamed from stat-label for clarity */
+    font-size: 1em; /* Slightly larger label */
+    color: var(--text-secondary); /* Light grey label */
+    font-weight: 500;
+  }
+
+  .stat-subtitle {
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-style: italic;
+  }
+  
+  .stat-grid { /* Keep grid, maybe adjust gaps */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Smaller minmax */
+    gap: 20px; /* Adjusted gap */
+    margin: 24px 0;
+  }
+  
+  .chart-container {
+    width: 100%;
+    max-width: 800px; /* Set a consistent max-width for all chart containers */
+    margin: 40px auto; /* Keep auto horizontal margins for centering */
+    padding: 24px 24px 60px 24px; /* Increased bottom padding from 40px to 60px */
+    background-color: var(--chart-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: 1px solid var(--border-color);
+    height: 450px;
+    max-height: 450px;
+    overflow: visible;
+    box-sizing: border-box; /* Add box-sizing to ensure padding is included in width */
+  }
+  
+  /* Style chart titles within the container */
+  .chart-container h4 {
+    text-align: center;
+    margin-bottom: 20px; /* More space below title */
+    color: var(--text-primary); /* White title */
+    font-weight: 600; /* Bolder title */
+    font-size: 1.2em;
+  }
+  
+  .chart-container canvas {
+    max-width: 100%; 
+    height: auto !important; 
+  }
+
+  /* Tooltip Styling */
+  .chartjs-tooltip { 
+    background: var(--chart-tooltip-bg) !important;
+    color: var(--chart-tooltip-text) !important;
+    border-radius: 6px !important; /* Slightly more rounded */
+    padding: 10px 15px !important; /* More padding */
+    font-size: 13px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Chart.js specific overrides (if needed) */
+  /* Example: Styling legend */
+  .chartjs-legend {
+    /* Custom styles */
+  }
+  
+  /* Animation styles */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; } /* More pronounced slide */
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  .animated {
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 0.6s ease forwards;
+  }
+  
+  /* Stagger animations */
+  .animated-delay-1 { animation: slideUp 0.6s ease forwards 0.1s; opacity: 0; }
+  .animated-delay-2 { animation: slideUp 0.6s ease forwards 0.2s; opacity: 0; }
+  .animated-delay-3 { animation: slideUp 0.6s ease forwards 0.3s; opacity: 0; }
+  .animated-delay-3a { animation: slideUp 0.6s ease forwards 0.35s; opacity: 0; } /* Finer control */
+  .animated-delay-3b { animation: slideUp 0.6s ease forwards 0.4s; opacity: 0; }
+  .animated-delay-4 { animation: slideUp 0.6s ease forwards 0.5s; opacity: 0; }
+  .animated-delay-5 { animation: slideUp 0.6s ease forwards 0.6s; opacity: 0; }
+  .animated-delay-6 { animation: slideUp 0.6s ease forwards 0.7s; opacity: 0; }
+  .animated-delay-6a { animation: slideUp 0.6s ease forwards 0.75s; opacity: 0; }
+  .animated-delay-6b { animation: slideUp 0.6s ease forwards 0.8s; opacity: 0; }
+  .animated-delay-6c { animation: slideUp 0.6s ease forwards 0.85s; opacity: 0; }
+  .animated-delay-7 { animation: slideUp 0.6s ease forwards 0.9s; opacity: 0; }
+  .animated-delay-8 { animation: slideUp 0.6s ease forwards 1.0s; opacity: 0; }
+  .animated-delay-9 { animation: slideUp 0.6s ease forwards 1.1s; opacity: 0; }
+  .animated-delay-10 { animation: slideUp 0.6s ease forwards 1.2s; opacity: 0; }
+  .animated-delay-11 { animation: slideUp 0.6s ease forwards 1.3s; opacity: 0; }
+  .animated-delay-12 { animation: slideUp 0.6s ease forwards 1.4s; opacity: 0; }
+
+  
+  /* Log container styles */
+  .log-container {
+    margin-top: 24px; /* More space */
+    margin-bottom: 24px;
+    width: 100%;
+    transition: height 0.3s ease;
+    background-color: var(--secondary-bg); /* Theme background */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    overflow: hidden; /* Hide content when collapsed */
+  }
+  
+  .log-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  #logToggleBtn { /* Use ID for toggle */
+    flex: 1;
+    text-align: left;
+    background-color: transparent; /* Make button transparent */
+    border: none; /* Remove border */
+    border-radius: 0; /* Remove radius */
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: background-color 0.2s;
+    text-transform: none; /* No uppercase */
+    letter-spacing: normal;
+  }
+  
+  #logToggleBtn:hover {
+    background-color: var(--card-bg); /* Darker hover */
+    color: var(--text-primary);
+  }
+
+  #fetchLogsBtn {
+    background-color: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 0;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    margin: 0;
+  }
+  
+  #fetchLogsBtn:hover {
+    background-color: #2674db; /* Slightly darker blue */
+  }
+  
+  #fetchLogsBtn:disabled {
+    background-color: #99bbea; /* Even lighter blue */
+    cursor: not-allowed;
+  }
+  
+  .log-output {
+    margin-top: 0; /* Remove margin */
+    padding: 16px; /* More padding */
+    background-color: var(--primary-bg); /* Darkest background for contrast */
+    border: none; /* Remove border */
+    border-top: 1px solid var(--border-color); /* Separator line */
+    border-radius: 0; /* Remove radius */
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+    color: var(--text-secondary); /* Base log color */
+  }
+  
+  .log-entry {
+    margin: 4px 0;
+    padding: 2px 8px; /* Adjusted padding */
+    border-left: 3px solid transparent;
+  }
+  
+  /* Update log entry colors to use variables */
+  .log-entry-info { border-left-color: var(--accent-blue); color: var(--text-primary); }
+  .log-entry-error { border-left-color: var(--accent-red); color: var(--accent-red); }
+  .log-entry-warning { border-left-color: var(--accent-yellow); color: var(--accent-yellow); }
+  .log-entry-success { border-left-color: var(--accent-green); color: var(--accent-green); }
+
+  .log-entry-timestamp {
+    color: #80868b; /* Keep grey or use var(--text-secondary) */
+    font-size: 11px;
+    margin-right: 8px;
+  }
+  
+  /* Raw Data Export Styles */
+  .raw-data-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--secondary-bg); /* Theme background */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+  }
+
+  .raw-data-container h4 {
+     color: var(--text-primary);
+     margin-top: 0;
+     margin-bottom: 15px;
+  }
+  
+  .raw-data-container textarea {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 15px; /* Space above textarea */
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    padding: 15px; /* More padding */
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--primary-bg); /* Darkest background */
+    color: var(--text-secondary);
+    resize: vertical; 
+    min-height: 150px; /* Minimum height */
+  }
+
+  .raw-data-container label {
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+   .raw-data-container label input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: var(--accent-green);
+   }
+
+  #csvDisplayArea {
+    margin-top: 15px; /* Consistent spacing */
+  }
+
+  /* Remove styling for the presentation statistics table */
+  /* 
+  .presentation-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 14px;
+  }
+
+  .presentation-table th {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    padding: 10px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border-color);
+  }
+
+  .presentation-table td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .presentation-table tr:hover {
+    background-color: var(--hover-color);
+  }
+
+  .presentation-table .slide-count {
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .presentation-table .view-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+
+  .presentation-table .view-link:hover {
+    background-color: var(--accent-color-light);
+    color: var(--accent-color-dark);
+  }
+  */
+
+  /* Language Toggle Styles */
+  .language-toggle {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 100;
+    gap: 5px;
+  }
+
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--secondary-bg);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 3px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .lang-btn.active {
+    background-color: var(--accent-green);
+    color: var(--primary-bg);
+    border-color: var(--accent-green);
+  }
+
+  .lang-btn:hover:not(.active) {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+  }
+
+  .flag-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    border-radius: 2px;
+  }
+
+  /* Theme toggle switch styles */
+  .theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+  }
+  
+  .theme-switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 48px;
+  }
+  
+  .theme-switch input {
+    display: none;
+  }
+  
+  .slider {
+    background-color: var(--card-bg);
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 34px;
+    border: 1px solid var(--border-color);
+  }
+  
+  .slider:before {
+    background-color: var(--accent-green);
+    bottom: 3px;
+    content: "";
+    height: 16px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 16px;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #333;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(22px);
+    background-color: #FFEA00;
+  }
+
+</style> 
