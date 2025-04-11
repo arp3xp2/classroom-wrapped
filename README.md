@@ -4,8 +4,8 @@ A Google Apps Script application that provides teachers with a Spotify Wrapped-s
 
 ## Features
 
-- **Submission Analytics**: Track total submissions, on-time vs. late ratio, submission patterns (by month, day, hour), completion rates, and student file uploads (count, type, timeline).
-- **Material Engagement**: See statistics on material uploads, file types, sizes, and detailed analysis of Google Slides presentations (slide count).
+- **Submission Engagement**: Track total submissions, on-time vs. late ratio, submission patterns (by month, day, hour), completion rates, and student file uploads.
+- **Material Analytics**: See statistics on material uploads and slide counts.
 - **Assignment Insights**: Analyze assignment creation patterns (with vs. without deadlines) over time.
 - **Submission Timing**: Identify "Early Bird" and "Night Owl" students based on their average submission times.
 
@@ -15,7 +15,7 @@ A Google Apps Script application that provides teachers with a Spotify Wrapped-s
 ### Deployment Instructions
 
 1. Go to [Google Apps Script](https://script.google.com/) and create a new project
-2. Copy all files from this repository into your project:
+2. Copy all files from the `src` directory into your project:
    - `code.gs`, `data.gs`, `utilities.gs` (server-side code)
    - `Index.html`, `Scripts.html`, `Styles.html` (client-side code)
    - `appsscript.json` (project configuration)
@@ -42,10 +42,10 @@ For developers familiar with [clasp](https://github.com/google/clasp) (Command L
 clasp login
 
 # Clone this repository
-git clone https://github.com/yourusername/classroom-wrapped.git
+git clone https://github.com/arp3xp2/classroom-wrapped.git
 cd classroom-wrapped
 
-# Push code to Apps Script
+# Push code to Apps Script (will use src directory as specified in .clasp.json)
 clasp push
 
 # Create a new version
@@ -78,22 +78,43 @@ When you first run the app, it will request the following permissions:
 
 The app runs under your account, so it only has access to the courses where you are a teacher or owner.
 
+## Repository Structure
+
+The repository is organized as follows:
+
+```
+/
+├── src/               # All Apps Script code files
+│   ├── code.gs
+│   ├── data.gs
+│   ├── utilities.gs
+│   ├── appsscript.json
+│   ├── Index.html
+│   ├── Scripts.html
+│   └── Styles.html
+├── docs/              # Documentation
+│   ├── PRD.md
+│   ├── system-design.md
+│   └── screenshots/
+└── README.md          # This file
+```
+
 ## Application Structure
 
 The application is organized into server-side and client-side components:
 
 ### Server-Side Code
-- `code.gs`: Entry points and core functionality
-- `data.gs`: Data processing and analytics functions
-- `utilities.gs`: Helper functions
+- `src/code.gs`: Entry points and core functionality
+- `src/data.gs`: Data processing and analytics functions
+- `src/utilities.gs`: Helper functions
 
 ### Client-Side Code
-- `Index.html`: Main application interface
-- `Styles.html`: CSS styling and themes
-- `Scripts.html`: Client-side JavaScript and visualization logic
+- `src/Index.html`: Main application interface
+- `src/Styles.html`: CSS styling and themes
+- `src/Scripts.html`: Client-side JavaScript and visualization logic
 
 ### Project Configuration
-- `appsscript.json`: API and OAuth scope configuration
+- `src/appsscript.json`: API and OAuth scope configuration
 
 ## Usage
 
@@ -106,32 +127,9 @@ The application is organized into server-side and client-side components:
    - Count presentation slides (may take a few minutes for large courses)
 5. Click "Generate Classroom Wrapped"
 6. View the statistics and visualizations
-7. Optionally export raw data as CSV
 
 ## Performance Considerations
 
 - For large courses with many assignments and submissions, the analysis may take several minutes
 - The slide counting feature analyzes all Google Slide presentations in the course materials, which can significantly increase processing time
 - Optimizations have been implemented to reduce API calls and improve performance
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
