@@ -9,6 +9,10 @@ A Google Apps Script application that provides teachers with a Spotify Wrapped-s
 - **Assignment Insights**: Analyze assignment creation patterns (with vs. without deadlines) over time.
 - **Submission Timing**: Identify "Early Bird" and "Night Owl" students based on their average submission times.
 
+## Screenshots
+
+![Classroom Wrapped - Main Dashboard](screenshots/main.png)
+![Classroom Wrapped - Graphs](screenshots/graphs.png)
 
 ## Installation
 
